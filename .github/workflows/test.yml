@@ -18,14 +18,12 @@ jobs:
     
     - name: Run tests
       run: |
-        source /opt/miniconda/etc/profile.d/conda.sh
-        conda activate speech2motion
-        pip install .
+        bash -c "source /opt/miniconda/etc/profile.d/conda.sh && conda activate speech2motion && pip install ."
         mkdir -p input
         cd input
         curl -LjO https://github.com/LazyBusyYang/CatStream/releases/download/s2m_cicd_files/gpt_4o_responses.txt
         cd ..
         wget https://github.com/LazyBusyYang/CatStream/releases/download/s2m_cicd_files/local_mdb_pytest.tar.gz
         tar -xzf local_mdb_pytest.tar.gz && rm local_mdb_pytest.tar.gz
-        pytest tests --log-cli-level=ERROR
+        bash -c "source /opt/miniconda/etc/profile.d/conda.sh && conda activate speech2motion && pytest tests --log-cli-level=ERROR"
         cat logs/pytest.log
