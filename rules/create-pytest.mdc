@@ -1,0 +1,29 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+请为首个文件中行数最多的class写一份pytest的单元测试，测试中的每个函数对应一个类方法，尽可能覆盖所有行，如果有raise Exception，也尽量在pytest中测试到需要raise的情况。请注意，测试代码也应遵守ruff.toml定义的规则。如果pytest的测试函数有非空的参数列表，请尽可能在参数列表中标记参数的typing hint，例如
+```python
+@pytest.fixture
+def dict_index_mapping():
+    """Fixture for creating a DictIndexMapping instance."""
+    return DictIndexMapping()
+
+@pytest.mark.asyncio
+async def test_set_item(dict_index_mapping):
+    await dict_index_mapping.set_item("key1", {"value1", "value2"})
+    assert await dict_index_mapping.get_item("key1") == {"value1", "value2"}
+```
+应该改写为
+```python
+@pytest.fixture
+def dict_index_mapping():
+    """Fixture for creating a DictIndexMapping instance."""
+    return DictIndexMapping()
+
+@pytest.mark.asyncio
+async def test_set_item(dict_index_mapping: DictIndexMapping):
+    await dict_index_mapping.set_item("key1", {"value1", "value2"})
+    assert await dict_index_mapping.get_item("key1") == {"value1", "value2"}
+```

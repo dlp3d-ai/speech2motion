@@ -1,0 +1,62 @@
+image: registry.sensetime.com/zoetrope/library/docker:19.03.15_aws
+
+variables:
+  GIT_SUBMODULE_STRATEGY: recursive
+
+stages:
+  - lint
+  - docstring
+  - build
+  - test
+
+lint:
+  interruptible: true
+  image: registry.sensetime.com/zoetrope/ruff:0.9-alpine
+  stage: lint
+  script:
+    - ruff --version
+    - ruff check
+
+docstring:
+  interruptible: true
+  image: registry.sensetime.com/zoetrope/lint:ubuntu1804_x64_py38
+  stage: docstring
+  script:
+    - source /root/miniconda3/etc/profile.d/conda.sh
+    - conda activate lint
+    - interrogate -vinmMI --ignore-init-method --ignore-module --ignore-nested-functions --ignore-regex "__repr__" -f 60 speech2motion/
+
+test:
+  interruptible: true
+  stage: test
+  image:
+    name: registry.sensetime.com/zoetrope/her:speech2motion-dev
+    entrypoint: [""]
+  needs:
+    - lint
+  script:
+    - source /opt/miniconda/etc/profile.d/conda.sh
+    - conda activate speech2motion
+    - pip install .
+    - mkdir -p input
+    - cd input
+    - curl -LjO https://github.com/LazyBusyYang/CatStream/releases/download/s2m_cicd_files/gpt_4o_responses.txt
+    - cd ..
+    - wget https://github.com/LazyBusyYang/CatStream/releases/download/s2m_cicd_files/local_mdb_pytest.tar.gz
+    - tar -xzf local_mdb_pytest.tar.gz && rm local_mdb_pytest.tar.gz
+    - pytest tests --log-cli-level=ERROR
+    - cat logs/pytest.log
+
+build:docker_image:
+  interruptible: true
+  stage: build
+  needs:
+    - lint
+  script:
+    - docker login registry.sensetime.com --username ${CI_REGISTRY_USERNAME} --password ${CI_REGISTRY_PASSWD}
+    - DOCKER_BUILDKIT=1 docker build --no-cache -t local:temp -f ./Dockerfile .
+    - docker tag local:temp registry.sensetime.com/zoetrope/her:speech2motion-${CI_COMMIT_TAG}
+    - echo "Pushing image to registry.sensetime.com/zoetrope/her:speech2motion-${CI_COMMIT_TAG}"
+    - docker push registry.sensetime.com/zoetrope/her:speech2motion-${CI_COMMIT_TAG}
+  only:
+    - tags
