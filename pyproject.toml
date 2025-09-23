@@ -1,0 +1,54 @@
+[project]
+name = "speech2motion"
+version = "2.0.0"
+description = "Service for speech2motion motion generation"
+authors = [{ name = "LazyBusyYang", email = "gaoyang_cn@outlook.com" }]
+readme = "README.md"
+requires-python = ">=3.10,<3.13"
+dependencies = [
+    "fastapi==0.115.8",
+    "numpy",
+    "python-multipart",
+    "jieba",
+    "tqdm",
+    "uvicorn",
+    "websockets",
+    "aiomysql",
+    "minio",
+    "prettytable",
+    "jinja2",
+    "cryptography",
+    "protobuf==6.31.1",
+    "setuptools-protobuf",
+    "boto3",
+    "watchtower",
+    "aiosqlite",
+]
+
+[project.optional-dependencies]
+dev = [
+    "ruff",
+    "pre-commit",
+    "pytest",
+    "pytest-asyncio",
+    "toml-to-requirements"
+]
+
+[project.urls]
+repository = "https://github.com/dlp3d-ai/speech2motion"
+
+[build-system]
+requires = ["setuptools>=45", "setuptools-scm", "setuptools-protobuf"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = ["speech2motion"]
+
+[tool.setuptools_scm]
+
+[tool.pytest]
+asyncio_default_fixture_loop_scope = "function"
+
+[tool.setuptools-protobuf]
+# protoc --python_out=. speech2motion/io/protobuf/streaming_v3.proto
+protobufs = ["speech2motion/io/protobuf/streaming_v3.proto"]

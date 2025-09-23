@@ -1,0 +1,33 @@
+name: Test
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    container:
+      image: dockersenseyang/dlp3d_speech2motion:v2.0.0rc2
+      options: --entrypoint ""
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        submodules: recursive
+    - name: Download files
+      run: |
+        mkdir -p input
+        cd input
+        curl -LjO https://github.com/LazyBusyYang/CatStream/releases/download/s2m_cicd_files/gpt_4o_responses.txt
+        cd ..
+        wget https://github.com/LazyBusyYang/CatStream/releases/download/s2m_cicd_files/local_mdb_pytest.tar.gz
+        tar -xzf local_mdb_pytest.tar.gz && rm local_mdb_pytest.tar.gz
+        ls -la
+    - name: Run tests
+      run: |
+        pwd
+        bash -c "source /opt/miniconda/etc/profile.d/conda.sh && conda activate speech2motion && pip install . && PYTHONPATH=/__w/speech2motion/speech2motion pytest tests --log-cli-level=ERROR"
+    - name: Cat pytest log
+      run: |
+        cat logs/pytest.log

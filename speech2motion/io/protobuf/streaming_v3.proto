@@ -1,0 +1,63 @@
+syntax = "proto3";
+
+package speech2motion_v3;
+
+// 请求消息定义，包含Start，Body，End三个类型的所有属性
+message Speech2MotionV3Request {
+  string class_name = 1;
+  string request_id = 2;
+  string user_id = 3;
+  string avatar = 4;
+  string app_name = 5;
+  float max_front_extension_duration = 6;
+  float max_rear_extension_duration = 7;
+  oneof memory_duration_override {
+    float memory_duration_override_value = 8;
+    bool memory_duration_override_is_none = 9;
+  }
+  // deprecated, only for V2 compatibility
+  oneof first_body_fast_response_override {
+    bool first_body_fast_response_override_value = 10;
+    bool first_body_fast_response_override_is_none = 11;
+  }
+  oneof response_chunk_n_frames {
+    int32 response_chunk_n_frames_value = 12;
+    bool response_chunk_n_frames_is_none = 13;
+  }
+  string return_content = 14;
+  float duration = 15;
+  string speech_text = 16;
+  int32 sequence_number = 17;
+  repeated SpeechTime speech_time = 18;
+  repeated MotionKeyword motion_keywords = 19;
+  string label_expression = 20;
+  // deprecated, only for V2 compatibility
+  bool idle_long_extendable = 21;
+}
+
+// 嵌套的属性类型
+message SpeechTime {
+  int32 char_index = 1;
+  float start_time = 2;
+}
+
+message MotionKeyword {
+  int32 start_char_index = 1;
+  string keyword = 2;
+}
+
+// 回应消息定义, V3与V2, V1相同
+message Speech2MotionV3Response {
+  string class_name = 1;
+  string request_id = 2;
+  repeated string joint_names = 3;
+  string restpose_name = 4;
+  string dtype = 5;
+  oneof timeline_start_idx {
+    int32 timeline_start_idx_value = 6;
+    bool timeline_start_idx_is_none = 7;
+  }
+  bytes data = 8;
+  string log = 9;
+  repeated string blendshape_names = 10;
+}

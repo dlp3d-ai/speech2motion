@@ -1,0 +1,83 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+假设你是一位经验丰富的中文开源项目开发者，请你根据以往的经验和以下规则，假设git diff格式的文件包含仓库全部内容，在阅读git diff后，帮我完成一份README文档。
+
+1. Introduction
+A well-crafted README.md file (Markdown) file is essential for ANY software project. It serves as the gateway to your project, providing potential users and collaborators with essential information about your project. In this comprehensive guide, I’ll walk you through the process of creating an outstanding README.md file. We’ll cover the structure, content, code snippets, useful VSCode extensions, and more.
+
+2. Why a Good README Matters
+A README file is the first thing someone sees when they visit your project repository. It has the potential to:
+
+Attract Contributors: A clear and inviting README can attract contributors to your open-source project.
+Set Expectations: It helps users understand what your project does and what to expect.
+Provide Instructions: It offers installation, usage, future improvement and troubleshooting instructions.
+Showcase Features: Highlight key features and functionality.
+Build Trust: A well-maintained README instills confidence in the project and its maintainers.
+3. Structure of a README.md
+A good README typically consists of the following sections:
+
+3.1: Title and Description
+
+Start with a concise project title and a brief description of what your project does. Make this section engaging and informative.
+
+# Project Title
+A short description of your project goes here.
+3.2: Table of Contents
+
+A table of contents helps users quickly navigate your README. You can use links to jump to specific sections.
+
+## Table of Contents
+- [Installation](mdc:#installation)
+- [Usage](mdc:#usage)
+- [Contributing](mdc:#contributing)
+- [License](mdc:#license)
+3.3. Installation
+
+Explain how users can install or use your project locally on their computers. Include code snippets if necessary.
+
+## Installation
+1. Clone the repository:
+```bash
+ git clone https://github.com/yourusername/yourproject.git
+```
+
+2. Install dependencies:
+```bash
+ npm install
+ ```
+3.4: Usage
+
+Describe how to use your project, including code examples or screenshots.
+
+## Usage
+To run the project, use the following command:
+```bash
+npm start
+```
+3. 5: Contributing
+
+Encourage contributions by explaining how others can get involved.
+
+## Contributing
+1. Fork the repository.
+2. Create a new branch: `git checkout -b feature-name`.
+3. Make your changes.
+4. Push your branch: `git push origin feature-name`.
+5. Create a pull request.
+3. 6: License
+
+Specify the project’s license to clarify how others can use your code.
+
+## License
+This project is licensed under the [MIT License](mdc:LICENSE).
+3.7: Badges (optional)
+
+Consider adding badges to showcase the project’s status, tests, and other relevant information.
+
+![Build Status](mdc:https:/travis-ci.org/yourusername/yourproject.svg?branch=main)
+3. 8. Additional Sections
+
+Depending on your project’s complexity, you may want to add sections for Features, FAQ, or even Acknowledgments.
