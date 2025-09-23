@@ -78,6 +78,7 @@ To use Speech2Motion, you need to download the offline motion database and set u
 
 The easiest way to get started with Speech2Motion is using the pre-built Docker image:
 
+**Linux/macOS:**
 ```bash
 # Pull and run the pre-built image
 docker run -it \
@@ -86,9 +87,16 @@ docker run -it \
   dockersenseyang/dlp3d_speech2motion:latest
 ```
 
+**Windows:**
+```cmd
+# Pull and run the pre-built image
+docker run -it -p 18084:18084 -v .\data:/workspace/speech2motion/data dockersenseyang/dlp3d_speech2motion:latest
+```
+
 **Command Explanation:**
 - `-p 18084:18084`: Maps the container's port 18084 to your host machine's port 18084
-- `-v $(pwd)/data:/workspace/speech2motion/data`: Mounts your local `data` directory to the container's data directory
+- `-v $(pwd)/data:/workspace/speech2motion/data` (Linux/macOS): Mounts your local `data` directory to the container's data directory
+- `-v .\data:/workspace/speech2motion/data` (Windows): Mounts your local `data` directory to the container's data directory
 - `dockersenseyang/dlp3d_speech2motion:latest`: Uses the pre-built public image
 
 **Prerequisites:**
@@ -99,6 +107,7 @@ docker run -it \
 
 If you prefer to build the image from source:
 
+**Linux/macOS:**
 ```bash
 # Build the Docker image
 docker build -t speech2motion:local .
@@ -108,6 +117,15 @@ docker run -it \
   -p 18084:18084 \
   -v $(pwd)/data:/workspace/speech2motion/data \
   speech2motion:local
+```
+
+**Windows:**
+```cmd
+# Build the Docker image
+docker build -t speech2motion:local .
+
+# Run the container
+docker run -it -p 18084:18084 -v .\data:/workspace/speech2motion/data speech2motion:local
 ```
 
 ## Environment Setup
