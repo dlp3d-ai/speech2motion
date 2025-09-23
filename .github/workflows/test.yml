@@ -30,7 +30,9 @@ jobs:
         pwd
         ls -la
         ls speech2motion -la
-        bash -c "source /opt/miniconda/etc/profile.d/conda.sh && conda activate speech2motion && pytest tests --log-cli-level=ERROR"
+        bash -c "source /opt/miniconda/etc/profile.d/conda.sh && conda activate speech2motion && python -c 'import sys; print(sys.path)'"
+        bash -c "source /opt/miniconda/etc/profile.d/conda.sh && conda activate speech2motion && python -c 'import speech2motion; print(speech2motion.__file__)'"
+        bash -c "source /opt/miniconda/etc/profile.d/conda.sh && conda activate speech2motion && PYTHONPATH=/__w/speech2motion/speech2motion pytest tests --log-cli-level=ERROR"
     - name: Cat pytest log
       run: |
         cat logs/pytest.log
