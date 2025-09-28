@@ -34,8 +34,9 @@ RUN mkdir -p /opt/protoc && cd /opt/protoc && \
     curl -LjO https://github.com/protocolbuffers/protobuf/releases/download/v31.1/protoc-31.1-linux-x86_64.zip \
     && unzip protoc-31.1-linux-x86_64.zip \
     && rm -f protoc-31.1-linux-x86_64.zip \
-    chmod +x bin/protoc && \
-    ln -s /opt/protoc/bin/protoc /usr/bin/protoc
+    && chmod +x bin/protoc && \
+    ln -s /opt/protoc/bin/protoc /usr/bin/protoc && \
+    protoc --version
 
 # Create virtual environment
 RUN python3.10 -m venv /opt/venv && \
@@ -43,7 +44,7 @@ RUN python3.10 -m venv /opt/venv && \
 /opt/venv/bin/pip cache purge
 
 # Update PATH to use virtual environment
-ENV PATH="/opt/venv/bin:$PATH"
+ENV PATH "/opt/venv/bin:$PATH"
 
 # COPY pyproject.toml and export requirements
 COPY pyproject.toml /opt/pyproject.toml
