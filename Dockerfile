@@ -16,43 +16,47 @@ RUN apt-get update && \
     ln -fs /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && \
     apt-get autoclean
 
-# Install miniconda
-RUN wget -q \
-    https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh \
-    && bash Miniconda3-latest-Linux-x86_64.sh -b -p /opt/miniconda \
-    && rm -f Miniconda3-latest-Linux-x86_64.sh
+# Install Python 3.10 from deadsnakes PPA
+RUN apt-get update && \
+    apt-get install -y software-properties-common && \
+    add-apt-repository ppa:deadsnakes/ppa && \
+    apt-get update && \
+    apt-get install -y \
+        python3.10 \
+        python3.10-dev \
+        python3.10-venv \
+        python3-pip && \
+    apt-get autoclean && \
+    rm -rf /var/lib/apt/lists/*
 
 # Download protoc
 RUN mkdir -p /opt/protoc && cd /opt/protoc && \
     curl -LjO https://github.com/protocolbuffers/protobuf/releases/download/v31.1/protoc-31.1-linux-x86_64.zip \
     && unzip protoc-31.1-linux-x86_64.zip \
     && rm -f protoc-31.1-linux-x86_64.zip \
-    && chmod +x bin/protoc
+    chmod +x bin/protoc && \
+    ln -s /opt/protoc/bin/protoc /usr/bin/protoc
 
-# Update in bashrc
-RUN echo "source /opt/miniconda/etc/profile.d/conda.sh" >> /root/.bashrc && \
-    echo "conda deactivate" >> /root/.bashrc && \
-    ln -s /opt/protoc/bin/protoc /usr/bin/protoc && \
-    protoc --version
+# Create virtual environment
+RUN python3.10 -m venv /opt/venv && \
+/opt/venv/bin/pip install --upgrade pip setuptools wheel && \
+/opt/venv/bin/pip cache purge
+
+# Update PATH to use virtual environment
+ENV PATH="/opt/venv/bin:$PATH"
 
 # Prepare conda env
-RUN . /opt/miniconda/etc/profile.d/conda.sh && \
-    conda config --add channels conda-forge && \
-    conda tos accept && \
-    conda create -n speech2motion python=3.10 -y && \
-    conda activate speech2motion && \
-    pip install toml-to-requirements && \
-    pip cache purge && \
+RUN /opt/venv/bin/pip install toml-to-requirements && \
+    /opt/venv/bin/pip cache purge && \
     conda clean --all
 
 # COPY pyproject.toml and export requirements
 COPY pyproject.toml /opt/pyproject.toml
-RUN . /opt/miniconda/etc/profile.d/conda.sh && \
-    conda activate speech2motion && \
-    cd /opt && \
+RUN cd /opt && \
+    /opt/venv/bin/pip install toml-to-requirements && \
     toml-to-req --toml-file pyproject.toml --optional-lists dev && \
-    pip install -r requirements.txt && \
-    pip cache purge
+    /opt/venv/bin/pip install -r requirements.txt && \
+    /opt/venv/bin/pip cache purge
 
 # COPY code
 COPY . /workspace/speech2motion
@@ -67,4 +71,4 @@ RUN . /opt/miniconda/etc/profile.d/conda.sh && \
 WORKDIR /workspace/speech2motion
 
 # Set entrypoint
-ENTRYPOINT ["/bin/bash", "-c", "source /opt/miniconda/etc/profile.d/conda.sh && conda activate speech2motion && python main.py"]
+ENTRYPOINT ["/opt/venv/bin/python", "main.py", "--config_path", "configs/local.py"]
