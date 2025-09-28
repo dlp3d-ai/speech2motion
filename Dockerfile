@@ -9,7 +9,7 @@ RUN apt-get update && \
     apt-get autoclean
 
 # Set timezone
-ENV DEBIAN_FRONTEND noninteractive
+ENV DEBIAN_FRONTEND="noninteractive"
 RUN apt-get update && \
     apt-get install -yq tzdata && \
     dpkg-reconfigure -f noninteractive tzdata && \
@@ -44,7 +44,7 @@ RUN python3.10 -m venv /opt/venv && \
 /opt/venv/bin/pip cache purge
 
 # Update PATH to use virtual environment
-ENV PATH "/opt/venv/bin:$PATH"
+ENV PATH="/opt/venv/bin:$PATH"
 
 # COPY pyproject.toml and export requirements
 COPY pyproject.toml /opt/pyproject.toml
