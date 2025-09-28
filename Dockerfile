@@ -45,11 +45,6 @@ RUN python3.10 -m venv /opt/venv && \
 # Update PATH to use virtual environment
 ENV PATH="/opt/venv/bin:$PATH"
 
-# Prepare conda env
-RUN /opt/venv/bin/pip install toml-to-requirements && \
-    /opt/venv/bin/pip cache purge && \
-    conda clean --all
-
 # COPY pyproject.toml and export requirements
 COPY pyproject.toml /opt/pyproject.toml
 RUN cd /opt && \
@@ -61,11 +56,9 @@ RUN cd /opt && \
 # COPY code
 COPY . /workspace/speech2motion
 # Install code
-RUN . /opt/miniconda/etc/profile.d/conda.sh && \
-    conda activate speech2motion && \
-    cd /workspace/speech2motion && \
-    pip install . && \
-    pip cache purge
+RUN cd /workspace/speech2motion && \
+    /opt/venv/bin/pip install . && \
+    /opt/venv/bin/pip cache purge
 
 # Set working directory
 WORKDIR /workspace/speech2motion
