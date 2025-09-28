@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     
     container:
-      image: dockersenseyang/dlp3d_speech2motion:v2.0.0rc2
+      image: dockersenseyang/dlp3d_speech2motion:latest
       options: --entrypoint ""
     
     steps:
@@ -30,7 +30,7 @@ jobs:
     - name: Run tests
       run: |
         pwd
-        bash -c "source /opt/miniconda/etc/profile.d/conda.sh && conda activate speech2motion && pip install . && PYTHONPATH=/__w/speech2motion/speech2motion pytest tests --log-cli-level=ERROR"
+        /opt/venv/bin/pip install . && PYTHONPATH=/__w/speech2motion/speech2motion /opt/venv/bin/python -m pytest tests --log-cli-level=ERROR
     - name: Cat pytest log
       run: |
         cat logs/pytest.log
