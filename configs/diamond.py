@@ -20,7 +20,7 @@ type: str = 'FastAPIServer'
 max_workers: int = 8
 enable_cors: bool = True
 host: str = '0.0.0.0'
-port: int = 8080
+port: int = 18084
 logger_cfg: dict = __logger_cfg__
 
 __meta_reader_cfg__ = dict(
