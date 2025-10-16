@@ -15,6 +15,7 @@ RUN apt-get update && \
     dpkg-reconfigure -f noninteractive tzdata && \
     ln -fs /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && \
     apt-get autoclean
+
 # Install Python 3.10 from source
 RUN apt-get update && \
     apt-get install -y \

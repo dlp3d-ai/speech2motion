@@ -47,8 +47,8 @@ Speech2Motion 是一个实时流式系统，能够将语音输入转换为同步
 ### 下载动作数据库
 
 1. **下载动作数据库：**
-   - **Google Drive**：访问 [动作数据库下载链接](https://drive.google.com/file/d/1YRUxRndfqJW2AQFlgonkGKmEQEbGywrf/view?usp=drive_link)
-   - **百度网盘**：访问 [动作数据库下载链接](https://pan.baidu.com/s/1NcppuuWQYkeBuGF5Jk6fEg)（提取码：`nabv`）
+   - **Google Drive**：访问 [动作数据库下载链接](https://drive.google.com/file/d/112pnjuIuNqADS-fAT6RUIAVPtb3VlWlq/view?usp=drive_link)
+   - **百度网盘**：访问 [动作数据库下载链接](https://pan.baidu.com/s/1YJSuLaoDKKV7JuE0Ws89zA)（提取码：`g64i`）
    - 根据您的网络情况选择合适的下载方式，下载压缩的动作数据库文件
 
 2. **解压并组织数据：**
