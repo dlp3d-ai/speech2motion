@@ -49,7 +49,7 @@ To use Speech2Motion, you need to download the offline motion database and set u
 1. **Download the motion database:**
 
    - **Google Drive Download:** [motion_data.zip](https://drive.google.com/file/d/112pnjuIuNqADS-fAT6RUIAVPtb3VlWlq/view?usp=drive_link)
-   - **Baidu Cloud：** [motion_data.zip](https://pan.baidu.com/s/1YJSuLaoDKKV7JuE0Ws89zA)（Share Code：`g64i`）
+   - **Baidu Cloud：** [motion_data.zip](https://pan.baidu.com/s/1YCisRewRQQdYT-GzCZxu-w?pwd=wwqm)
    - According to your network environment, choose the appropriate download method to download the compressed motion database file
 
 2. **Extract and organize the data:**
