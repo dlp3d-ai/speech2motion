@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     
     container:
-      image: dockersenseyang/dlp3d_speech2motion:latest
+      image: dlp3dai/speech2motion:latest
       options: --entrypoint ""
     
     steps:

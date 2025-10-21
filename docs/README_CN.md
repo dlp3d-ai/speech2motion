@@ -86,20 +86,20 @@ Speech2Motion 是一个实时流式系统，能够将语音输入转换为同步
 docker run -it \
   -p 18084:18084 \
   -v $(pwd)/data:/workspace/speech2motion/data \
-  dockersenseyang/dlp3d_speech2motion:latest
+  dlp3dai/speech2motion:latest
 ```
 
 **Windows：**
 ```cmd
 # 拉取并运行预构建镜像
-docker run -it -p 18084:18084 -v .\data:/workspace/speech2motion/data dockersenseyang/dlp3d_speech2motion:latest
+docker run -it -p 18084:18084 -v .\data:/workspace/speech2motion/data dlp3dai/speech2motion:latest
 ```
 
 **命令说明：**
 - `-p 18084:18084`：将容器的18084端口映射到主机的18084端口
 - `-v $(pwd)/data:/workspace/speech2motion/data`（Linux/macOS）：将本地 `data` 目录挂载到容器的数据目录
 - `-v .\data:/workspace/speech2motion/data`（Windows）：将本地 `data` 目录挂载到容器的数据目录
-- `dockersenseyang/dlp3d_speech2motion:latest`：使用预构建的公共镜像
+- `dlp3dai/speech2motion:latest`：使用预构建的公共镜像
 
 **前提条件：**
 - 确保项目根目录中有 `data` 目录

@@ -87,20 +87,20 @@ The easiest way to get started with Speech2Motion is using the pre-built Docker 
 docker run -it \
   -p 18084:18084 \
   -v $(pwd)/data:/workspace/speech2motion/data \
-  dockersenseyang/dlp3d_speech2motion:latest
+  dlp3dai/speech2motion:latest
 ```
 
 **Windows:**
 ```cmd
 # Pull and run the pre-built image
-docker run -it -p 18084:18084 -v .\data:/workspace/speech2motion/data dockersenseyang/dlp3d_speech2motion:latest
+docker run -it -p 18084:18084 -v .\data:/workspace/speech2motion/data dlp3dai/speech2motion:latest
 ```
 
 **Command Explanation:**
 - `-p 18084:18084`: Maps the container's port 18084 to your host machine's port 18084
 - `-v $(pwd)/data:/workspace/speech2motion/data` (Linux/macOS): Mounts your local `data` directory to the container's data directory
 - `-v .\data:/workspace/speech2motion/data` (Windows): Mounts your local `data` directory to the container's data directory
-- `dockersenseyang/dlp3d_speech2motion:latest`: Uses the pre-built public image
+- `dlp3dai/speech2motion:latest`: Uses the pre-built public image
 
 **Prerequisites:**
 - Ensure you have a `data` directory in your project root
