@@ -49,7 +49,7 @@ To use Speech2Motion, you need to download the offline motion database and set u
 1. **Download the motion database:**
 
    - **Google Drive Download:** [motion_data.zip](https://drive.google.com/file/d/112pnjuIuNqADS-fAT6RUIAVPtb3VlWlq/view?usp=drive_link)
-   - **Baidu Cloud：** [motion_data.zip](https://pan.baidu.com/s/1YJSuLaoDKKV7JuE0Ws89zA)（Share Code：`g64i`）
+   - **Baidu Cloud：** [motion_data.zip](https://pan.baidu.com/s/1YCisRewRQQdYT-GzCZxu-w?pwd=wwqm)
    - According to your network environment, choose the appropriate download method to download the compressed motion database file
 
 2. **Extract and organize the data:**
@@ -87,20 +87,20 @@ The easiest way to get started with Speech2Motion is using the pre-built Docker 
 docker run -it \
   -p 18084:18084 \
   -v $(pwd)/data:/workspace/speech2motion/data \
-  dockersenseyang/dlp3d_speech2motion:latest
+  dlp3d/speech2motion:latest
 ```
 
 **Windows:**
 ```cmd
 # Pull and run the pre-built image
-docker run -it -p 18084:18084 -v .\data:/workspace/speech2motion/data dockersenseyang/dlp3d_speech2motion:latest
+docker run -it -p 18084:18084 -v .\data:/workspace/speech2motion/data dlp3d/speech2motion:latest
 ```
 
 **Command Explanation:**
 - `-p 18084:18084`: Maps the container's port 18084 to your host machine's port 18084
 - `-v $(pwd)/data:/workspace/speech2motion/data` (Linux/macOS): Mounts your local `data` directory to the container's data directory
 - `-v .\data:/workspace/speech2motion/data` (Windows): Mounts your local `data` directory to the container's data directory
-- `dockersenseyang/dlp3d_speech2motion:latest`: Uses the pre-built public image
+- `dlp3d/speech2motion:latest`: Uses the pre-built public image
 
 **Prerequisites:**
 - Ensure you have a `data` directory in your project root
