@@ -50,6 +50,10 @@ class SQLiteMetaReader(BaseMetaReader):
             self.logger.error(msg)
             raise ImportError(msg)
         self.sqlite_path = sqlite_path
+        if not os.path.exists(self.sqlite_path):
+            msg = f'SQLite database file not found: {self.sqlite_path}'
+            self.logger.error(msg)
+            raise FileNotFoundError(msg)
         self.sqlite_join_cmd_path = sqlite_join_cmd_path
         with open(self.sqlite_join_cmd_path) as f:
             self.sqlite_join_cmd = f.read().replace('\n', ' ').strip()
