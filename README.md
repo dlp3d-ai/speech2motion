@@ -7,10 +7,7 @@
 - [Overview](#overview)
 - [Data Preparation](#data-preparation)
 - [Quick Start](#quick-start)
-- [Environment Setup](#environment-setup)
-- [API Documentation](#api-documentation)
-- [Configuration](#configuration)
-- [Development](#development)
+- [Documentation](#documentation)
 - [License](#license)
 
 ## Overview
@@ -91,7 +88,7 @@ docker run -it \
 ```
 
 **Windows:**
-```cmd
+```bash
 # Pull and run the pre-built image
 docker run -it -p 18084:18084 -v .\data:/workspace/speech2motion/data dlp3d/speech2motion:latest
 ```
@@ -106,139 +103,17 @@ docker run -it -p 18084:18084 -v .\data:/workspace/speech2motion/data dlp3d/spee
 - Ensure you have a `data` directory in your project root
 - Make sure Docker is installed and running on your system
 
-**Alternative: Build from Source**
+## Documentation
 
-If you prefer to build the image from source:
+For detailed information about installation, API usage, configuration, and development, please visit our comprehensive documentation:
 
-**Linux/macOS:**
-```bash
-# Build the Docker image
-docker build -t speech2motion:local .
+📖 **[Complete Documentation](https://dlp3d.readthedocs.io/en/latest/_subrepos/speech2motion/overview.html)**
 
-# Run the container
-docker run -it \
-  -p 18084:18084 \
-  -v $(pwd)/data:/workspace/speech2motion/data \
-  speech2motion:local
-```
-
-**Windows:**
-```cmd
-# Build the Docker image
-docker build -t speech2motion:local .
-
-# Run the container
-docker run -it -p 18084:18084 -v .\data:/workspace/speech2motion/data speech2motion:local
-```
-
-## Environment Setup
-
-For local development and deployment, please follow the detailed installation guide:
-
-📖 **[Complete Installation Guide](docs/install.md)**
-
-The installation guide provides step-by-step instructions for:
-- Setting up Python 3.10+ environment
-- Installing Protocol Buffers compiler
-- Configuring the development environment
-- Installing project dependencies
-
-### Local Development
-
-After completing the environment setup as described in the installation guide, you can start the service locally:
-
-```bash
-# Activate the conda environment
-conda activate speech2motion
-
-# Start the service
-python main.py
-```
-
-## API Documentation
-
-### Streaming APIs
-
-The system provides three versions of streaming APIs with different capabilities and deployment strategies:
-
-- **V1 API**: Basic streaming motion generation interface with fundamental motion keyword matching. This version is currently deprecated and no longer actively maintained.
-
-- **V2 API**: Enhanced streaming interface built upon V1's foundation, featuring:
-  - Advanced retrieval capabilities for emotions and relationship annotations
-  - Enhanced support for diverse downstream applications
-  - Improved interpolation and memory management
-
-- **V3 API**: Revolutionary streaming interface with a completely different dual-timeline synchronous retrieval strategy:
-  - Significantly increased keyword motion trigger rates
-  - Advanced blending capabilities and improved transitions
-  - Dual-timeline architecture for enhanced motion synchronization
-
-**Deployment**: Both V2 and V3 APIs are simultaneously deployed and accessible through different FastAPI service endpoints, allowing applications to choose the most suitable version based on their specific requirements.
-
-### Request/Response Format
-
-All APIs use Protocol Buffers for efficient serialization. The system supports:
-
-- **Chunk-based Processing**: Speech input is processed in chunks for real-time response
-- **Motion Timeline**: Frame-based timeline management for precise motion sequencing
-- **Keyword Matching**: Both motion keywords and speech keywords for intelligent selection
-- **Memory Integration**: User session memory to avoid repetitive animations
-
-## Configuration
-
-### Local Configuration
-
-For local development, the system uses `configs/local.py` which configures:
-
-- **SQLite Database**: Local motion database (`data/motion_database.db`)
-- **Filesystem Readers**: Local file-based motion and restpose readers
-
-### Production Configuration
-
-For production deployment, use `configs/diamond.py` which supports:
-
-- **MySQL Database**: Production-grade database backend
-- **MinIO Storage**: Object storage for motion files
-
-## Development
-
-### Project Structure
-
-```
-speech2motion/
-├── apis/              # Streaming API implementations
-├── cache/             # Caching system
-├── data_structures/   # Core data models
-├── filters/           # Motion filtering pipeline
-├── io/                # Data I/O modules
-├── merge/             # Motion merging and blending
-├── retrieve/          # Motion retrieval system
-├── service/           # FastAPI server
-├── text_segmentation/ # Text processing
-├── utils/             # Utility functions
-└── variety/           # Memory management
-```
-
-### Testing
-
-The project includes comprehensive tests:
-
-```bash
-# Run all tests
-pytest tests --log-cli-level=ERROR
-
-# Run specific test categories
-pytest tests/filters/  # Filter tests
-pytest tests/merge/    # Merge operation tests
-```
-
-### Code Quality
-
-The project maintains high code quality with:
-
-- **Linting**: Ruff for code style and quality checks
-- **Type Hints**: Full type annotation support
-- **CI/CD**: Automated testing and deployment pipelines
+The documentation includes:
+- **Installation Guide**: Step-by-step environment setup and dependency installation
+- **API Documentation**: Detailed API specifications and usage examples
+- **Configuration**: Local and production configuration options
+- **Development Guide**: Project structure, testing, and contribution guidelines
 
 ## License
 

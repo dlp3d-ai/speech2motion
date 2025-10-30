@@ -90,7 +90,7 @@ docker run -it \
 ```
 
 **Windows：**
-```cmd
+```bash
 # 拉取并运行预构建镜像
 docker run -it -p 18084:18084 -v .\data:/workspace/speech2motion/data dlp3d/speech2motion:latest
 ```
@@ -122,7 +122,7 @@ docker run -it \
 ```
 
 **Windows：**
-```cmd
+```bash
 # 构建 Docker 镜像
 docker build -t speech2motion:local .
 

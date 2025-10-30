@@ -5,29 +5,29 @@ This document provides step-by-step instructions for setting up the speech2motio
 ## Table of Contents
 
 - [Linux Environment Setup](#linux-environment-setup)
-  - [Prerequisites](#prerequisites)
-  - [Step 1: Install Protocol Buffers Compiler](#step-1-install-protocol-buffers-compiler)
-  - [Step 2: Set Up Python](#step-2-set-up-python)
-  - [Step 3: Install the Project](#step-3-install-the-project)
-  - [Step 4: Verify Installation](#step-4-verify-installation)
-  - [Environment Activation](#environment-activation)
+  - [Linux Prerequisites](#linux-prerequisites)
+  - [Linux Step 1: Install Protocol Buffers Compiler](#linux-step-1-install-protocol-buffers-compiler)
+  - [Linux Step 2: Set Up Python](#linux-step-2-set-up-python)
+  - [Linux Step 3: Install the Project](#linux-step-3-install-the-project)
+  - [Linux Step 4: Verify Installation](#linux-step-4-verify-installation)
+  - [Linux Environment Activation](#linux-environment-activation)
 - [Windows Environment Setup](#windows-environment-setup)
-  - [Prerequisites](#prerequisites-1)
-  - [Step 1: Install Protocol Buffers Compiler](#step-1-install-protocol-buffers-compiler-1)
-  - [Step 2: Set Up Python](#step-2-set-up-python-1)
-  - [Step 3: Install the Project](#step-3-install-the-project-1)
-  - [Step 4: Verify Installation](#step-4-verify-installation-1)
-  - [Environment Activation](#environment-activation-1)
+  - [Windows Prerequisites](#windows-prerequisites)
+  - [Windows Step 1: Install Protocol Buffers Compiler](#windows-step-1-install-protocol-buffers-compiler)
+  - [Windows Step 2: Set Up Python](#windows-step-2-set-up-python)
+  - [Windows Step 3: Install the Project](#windows-step-3-install-the-project)
+  - [Windows Step 4: Verify Installation](#windows-step-4-verify-installation)
+  - [Windows Environment Activation](#windows-environment-activation)
 
 ## Linux Environment Setup
 
-### Prerequisites
+### Linux Prerequisites
 
 Before starting, ensure you have the following system requirements:
 - Ubuntu 20.04 or compatible Linux distribution
 - Internet connection for downloading packages
 
-### Step 1: Install Protocol Buffers Compiler
+### Linux Step 1: Install Protocol Buffers Compiler
 
 Download and install protoc for protocol buffer compilation:
 
@@ -51,7 +51,7 @@ bin/protoc --version
 cd ..
 ```
 
-### Step 2: Set Up Python
+### Linux Step 2: Set Up Python
 
 You need Python 3.10 or higher to run this project. This document provides one method using conda for Python installation as a reference.
 
@@ -79,7 +79,7 @@ conda activate speech2motion
 
 ```
 
-### Step 3: Install the Project
+### Linux Step 3: Install the Project
 
 Install the speech2motion package:
 
@@ -94,7 +94,7 @@ conda activate speech2motion
 pip install .
 ```
 
-### Step 4: Verify Installation
+### Linux Step 4: Verify Installation
 
 Test that everything is working correctly:
 
@@ -109,7 +109,7 @@ python -c "import speech2motion.apis; print('speech2motion.apis imported success
 python main.py --help
 ```
 
-### Environment Activation
+### Linux Environment Activation
 
 To work with the speech2motion project, always activate the conda environment first:
 
@@ -124,13 +124,13 @@ conda activate speech2motion
 
 ## Windows Environment Setup
 
-### Prerequisites
+### Windows Prerequisites
 
 Before starting, ensure you have the following system requirements:
 - Windows 10/11 or compatible Windows distribution
 - Internet connection for downloading packages
 
-### Step 1: Install Protocol Buffers Compiler
+### Windows Step 1: Install Protocol Buffers Compiler
 
 Download and install protoc for protocol buffer compilation:
 
@@ -144,12 +144,12 @@ Download and install protoc for protocol buffer compilation:
    - Ensure the executable file is located at: `protoc\bin\protoc.exe`
 
 3. **Verify installation:**
-   ```cmd
+   ```bash
    # Open Command Prompt in your project directory
    protoc\bin\protoc.exe --version
    ```
 
-### Step 2: Set Up Python
+### Windows Step 2: Set Up Python
 
 You need Python 3.10 or higher to run this project. This document provides one method using conda for Python installation as a reference.
 
@@ -162,7 +162,7 @@ You need Python 3.10 or higher to run this project. This document provides one m
    - **Important**: During installation, make sure to check "Add Miniconda3 to my PATH environment variable" or add the Miniconda3/Scripts directory to the PATH environment variable manually to enable conda commands from any terminal
 
 2. **Create and Activate Environment:**
-   ```cmd
+   ```bash
    # Create speech2motion environment with Python 3.10
    conda create -n speech2motion python=3.10 -y
    
@@ -170,11 +170,11 @@ You need Python 3.10 or higher to run this project. This document provides one m
    conda activate speech2motion
    ```
 
-### Step 3: Install the Project
+### Windows Step 3: Install the Project
 
 Install the speech2motion package:
 
-```cmd
+```bash
 # Ensure you're in the project root directory
 cd /path/to/speech2motion
 
@@ -188,11 +188,11 @@ set PATH=%PATH%;%CD%\protoc\bin
 pip install .
 ```
 
-### Step 4: Verify Installation
+### Windows Step 4: Verify Installation
 
 Test that everything is working correctly:
 
-```cmd
+```bash
 # Activate the environment
 conda activate speech2motion
 
@@ -203,11 +203,11 @@ python -c "import speech2motion.apis; print('speech2motion.apis imported success
 python main.py --help
 ```
 
-### Environment Activation
+### Windows Environment Activation
 
 To work with the speech2motion project, always activate the conda environment first:
 
-```cmd
+```bash
 # Activate the environment
 conda activate speech2motion
 
