@@ -42,6 +42,8 @@ __restpose_reader_cfg__ = dict(
         'KQ-default': 'KQ_default_0326_skeleton.npz',
         'FNN-default': 'FNN_default_0819_skeleton.npz',
         'HT-default': 'HT_default_0819_skeleton.npz',
+        'NXD-default': 'NXD_default_1202_skeleton.npz',
+        'KL-default': 'KL_default_1202_skeleton.npz',
         'Ani-default': 'Ani_default_0827_skeleton.npz'
     },
     float_dtype=np.float32,

@@ -55,6 +55,8 @@ __restpose_reader_cfg__ = dict(
         'KQ-default': 'restpose_npz/KQ_default_0326_skeleton.npz',
         'FNN-default': 'restpose_npz/FNN_default_0819_skeleton.npz',
         'HT-default': 'restpose_npz/HT_default_0819_skeleton.npz',
+        'NXD-default': 'restpose_npz/NXD_default_1202_skeleton.npz',
+        'KL-default': 'restpose_npz/KL_default_1202_skeleton.npz',
         'Ani-default': 'restpose_npz/Ani_default_0827_skeleton.npz'
     },
     endpoint=os.getenv('OSS_ENDPOINT'),
