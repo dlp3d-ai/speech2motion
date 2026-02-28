@@ -200,12 +200,12 @@ class MinioMySQLMotionReader(MinioMotionReader):
             async with mysql_connection.cursor() as cur:
                 command = '''SELECT MAX(last_update_time) AS latest_update_time
                     FROM (
-                    SELECT MAX(update_time) AS last_update_time
-                    FROM information_schema.tables
-                    WHERE table_schema = 'motion_db'
-                    GROUP BY TABLE_NAME
-                ) AS subquery;'''
-                await cur.execute(command)
+                        SELECT MAX(update_time) AS last_update_time
+                        FROM information_schema.tables
+                        WHERE table_schema = %s
+                        GROUP BY TABLE_NAME
+                    ) AS subquery;'''
+                await cur.execute(command, (self.mysql_database,))
                 result = await cur.fetchall()
         return str(result[0][0])
 

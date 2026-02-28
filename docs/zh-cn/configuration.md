@@ -9,7 +9,7 @@
 
 ## 生产配置
 
-对于生产部署，使用 `configs/diamond.py`，支持：
+对于生产部署，使用 `configs/online.py`，支持：
 
 - **MySQL 数据库**：生产级数据库后端
 - **MinIO 存储**：动作文件的对象存储

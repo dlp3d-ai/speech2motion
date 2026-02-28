@@ -150,10 +150,10 @@ class MySQLMetaReader(BaseMetaReader):
                     FROM (
                         SELECT MAX(update_time) AS last_update_time
                         FROM information_schema.tables
-                        WHERE table_schema = 'motion_db'
+                        WHERE table_schema = %s
                         GROUP BY TABLE_NAME
                     ) AS subquery;'''
-                await cur.execute(command)
+                await cur.execute(command, (self.mysql_database,))
                 result = await cur.fetchall()
         return str(result[0][0])
 
