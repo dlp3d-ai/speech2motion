@@ -9,7 +9,7 @@ For local development, the system uses `configs/local.py` which configures:
 
 ## Production Configuration
 
-For production deployment, use `configs/diamond.py` which supports:
+For production deployment, use `configs/online.py` which supports:
 
 - **MySQL Database**: Production-grade database backend
 - **MinIO Storage**: Object storage for motion files
